@@ -1,0 +1,118 @@
+
+
+/* FOR THE FLEX PROPERTY */
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.jstfy-centre{
+    display: flex;
+    justify-content: center;
+}
+
+.jstfy-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.jstfy-start{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.jstfy-spce-btwn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.jstfy-spce-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.align-centre{
+    display: flex;
+    align-items: center;
+}
+
+.align-end{
+    display: flex;
+    align-items: flex-end;
+}
+
+.align-start{
+    display: flex;
+    align-items: flex-start;
+}
+
+.align-spce-btwn{
+    display: flex;
+    align-items: space-between;
+}
+
+.align-spce-around {
+    display: flex;
+    align-items: space-around;
+}
+
+
+/* FOR THE PADDING PROPERTY */
+
+.padding-small{
+    padding: 0.5rem;
+}
+
+.padding-Xsmall{
+    padding: 1rem;
+}
+
+.padding-medium{
+    padding: 2rem;
+}
+
+.padding-Xmedium{
+    padding: 3rem;
+}
+
+.padding-large{
+    padding: 4rem;
+}
+
+.padding-Xlarge{
+    padding: 5rem;
+}
+
+
+/* FOR THE MARGIN PROPERTY */
+
+.margin-small{
+    margin: 0.5rem;
+}
+
+.margin-Xsmall{
+    margin: 1rem;
+}
+
+.margin-medium{
+    margin: 2rem;
+}
+
+.margin-Xmedium{
+    margin: 3rem;
+}
+
+.margin-large{
+    margin: 4rem;
+}
+
+.margin-Xlarge{
+    margin: 5rem;
+}
+
+
