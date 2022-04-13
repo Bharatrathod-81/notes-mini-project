@@ -1,0 +1,31 @@
+.home-body{
+    height: 90vh;
+}
+
+.home-texts{
+    height: 70vh;
+}
+
+.main-heading{
+    font-size: 40px;
+}
+
+.heading{
+    color: var(--primary-color);
+}
+
+.img-container{
+    width: 100%;
+}
+
+.img{
+    width: 80%;
+    height: 80vh;
+}
+
+.guest-login-btn{
+    background-color: var(--primary-color);
+    width: 35%;
+    border-radius: 0.2rem;
+    font-weight: bolder;
+}

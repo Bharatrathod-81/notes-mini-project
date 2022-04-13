@@ -1,4 +1,17 @@
+:root{
+  --primary-color :rgba(22, 148, 148, 0.98)
+}
+
+button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+Link{
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }
-

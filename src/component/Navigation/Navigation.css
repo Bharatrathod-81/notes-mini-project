@@ -1,0 +1,21 @@
+.nav-body{
+    background-color: var(--primary-color);
+    padding: 1rem 3rem;
+
+}
+
+.login-icon-container{
+    /* width: 10%; */
+}
+
+.login-Btn{
+    font-weight: bolder;
+    font-size: large;
+    color: black;
+    border: 2px solid ;
+    border-radius: 0.2rem;
+}
+
+.profile-icon{
+    font-size: 29px;
+}
