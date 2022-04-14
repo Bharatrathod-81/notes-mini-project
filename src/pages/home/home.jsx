@@ -1,4 +1,5 @@
 import "./home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -12,7 +13,9 @@ const Home = () => {
                     <p>Manage your daily tasks and workflow in a modern way and boost your efficiency without any efforts.</p>
                 </div>
                 <div>
-                    <button className="guest-login-btn padding-Xsmall">Join Now as a Guest</button>
+                    <Link to="main">
+                        <button className="guest-login-btn padding-Xsmall">Join Now as a Guest</button>
+                    </Link>
                 </div>
             </div>
             <div className="img-container">

@@ -1,0 +1,139 @@
+.create-container{
+    position: absolute;
+    top: 15%;
+    width: 30rem;
+    border-radius: 0.2rem;
+    border: 2px solid gray;
+    background-color: rgb(253, 251, 251);
+}
+
+.title-input-container{
+    width: 95%;
+    text-align: start;
+}
+
+
+.color-btn-container{
+    position: relative;
+    height: 4vh;
+}
+
+.color-btn{
+    margin-top: 0.5rem; 
+}
+
+.color-container{
+    background-color: rgb(207, 228, 246);
+    position: absolute;
+    top: -29%;
+    right: 0%;
+    height: 5.2vh;
+    width: 600%;
+}
+
+.colors{
+    border: 1px solid white;
+    width: 2.7rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+.color1{
+    background-color: rgb(248, 220, 185);
+}
+
+.color2{
+    background-color: rgb(185, 248, 189);
+}
+
+.color3{
+    background-color: rgb(185, 193, 248);
+}
+
+.color4{
+    background-color: rgb(193, 245, 243);
+}
+
+.color5{
+    background-color: rgb(248, 185, 188);
+}
+
+.title-input{
+    border:2px solid var(--primary-color);
+    border-radius: 0.2rem;
+    background-color: rgb(233, 231, 228);
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.italic{
+    font-family: italic;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.lineThrough{
+    text-decoration: line-through;
+}
+
+.edit-Btn{
+    font-size: large;
+}
+
+.error-msge{
+    color: red;
+}
+
+.content-input-container{
+    width: 95%;
+    text-align: start;
+}
+
+.content-input{
+    border:2px solid var(--primary-color);
+    border-radius: 0.2rem;
+    height: 10vh;
+    background-color: rgb(233, 231, 228);
+}
+
+.labels-input-container{
+    width: 95%;
+    text-align: start;
+}
+
+.label-list{
+    margin-top: 0.5rem;
+}
+
+.priority-inputs{
+    margin-top: 0.5rem;
+}
+
+.save-close{
+    width: 100%;
+}
+
+
+.save-btn{
+    background-color: var(--primary-color);
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 0.2rem;
+}
+
+.close-btn{
+    background-color: var(--primary-color);
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 0.2rem;
+}
+
+.priority{
+    width: 95%;
+    text-align: start;
+}
+

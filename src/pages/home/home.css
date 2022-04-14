@@ -1,5 +1,8 @@
 .home-body{
     height: 90vh;
+    width: 100%;
+    flex-wrap: wrap;
+    z-index: 2;
 }
 
 .home-texts{
@@ -14,12 +17,9 @@
     color: var(--primary-color);
 }
 
-.img-container{
-    width: 100%;
-}
 
 .img{
-    width: 80%;
+    width: 70%;
     height: 80vh;
 }
 
