@@ -1,10 +1,11 @@
 import "./form.css";
 import { useState } from "react";
 import { useInputContext } from "../../contexts/input-contexts";
+import { useEditContext } from "../../contexts/editContext";
 
 const Form = ({ closeForm }) => {
 
-
+    const { editData, dispatchEditData} = useEditContext(); 
 
     const { setCreateBtn } = closeForm;
 
@@ -23,11 +24,12 @@ const Form = ({ closeForm }) => {
             archive: false
         });
 
-    const [error, setError] = useState(false);
 
     const [Priority, setPriority] = useState("");
 
     const [colorBtn, setColorBtn] = useState(false);
+
+    const [oldData, setOldData] = useState({title:editData.title,content:editData.content});
 
     const { dataOfNodes, dispatchNoteData } = useInputContext();
 
@@ -77,20 +79,11 @@ const Form = ({ closeForm }) => {
 
 
 
-    const isTitleSame = dataOfNodes.some(item => item.title === newNotesValue.title)
 
     const saveFunc = () => {
-
-        if (newNotesValue.content !== "" &&
-            newNotesValue.title !== "" &&
-            newNotesValue.labels[0] !== undefined) {
-            if (!isTitleSame) {
-                dispatchNoteData({ type: "NEW_NOTES", payload: { ...newNotesValue, priority: Priority } });
-                setCreateBtn(false);
-            };
-        } else {
-            setError(true)
-        };
+            dispatchNoteData({ type: "NEW_NOTES", payload: { ...newNotesValue, priority: Priority } });
+            setCreateBtn(false);
+  
     }
 
 
@@ -146,11 +139,13 @@ const Form = ({ closeForm }) => {
                 <input
                     className={`title-input padding-small ${newNotesValue.titleText.join(" ")}`}
                     type="text"
+                    value={oldData.title}
                     placeholder="Title..."
-                    onChange={e => titleFunc(e.target.value)}
+                    onChange={e => {
+                        setOldData(e.target.value)
+                        titleFunc(e.target.value)}}
                 />
             </div>
-            {isTitleSame && <p className="error-msge">This Title is already used!</p>}
             <div className="content-input-container flex-column  margin-small">
                 <div className=" jstfy-spce-btwn">
                     <label htmlFor="content-input">CONTENT</label>
@@ -172,8 +167,11 @@ const Form = ({ closeForm }) => {
                 <textarea
                     className={`content-input padding-small ${newNotesValue.contentText.join(" ")}`}
                     type="text"
+                    value={oldData.content}
                     placeholder="Enter note..."
-                    onChange={e => contentFunc(e.target.value)}
+                    onChange={e => {
+                        setOldData(e.target.value)
+                        contentFunc(e.target.value)}}
                 />
             </div>
             <div className="labels-input-container  margin-small ">
@@ -236,7 +234,6 @@ const Form = ({ closeForm }) => {
                     onClick={() => setCreateBtn(false)}
                 >CLOSE</button>
             </div>
-            {error && <p className="error-msge" >Fill all the empty Place</p>}
         </div>
     );
 };
