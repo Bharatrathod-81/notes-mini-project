@@ -1,0 +1,60 @@
+.note-body{
+    border: 2px solid rgba(199, 196, 196, 0.318);
+    border-radius: 0.2rem;
+    width: 50%;
+
+}
+
+
+.fa-thumb-tack{
+    font-size: 20px;
+}
+
+.normal-color{
+    color: rgb(107, 107, 107);
+}
+
+.primary-color{
+    color: var(--primary-color);
+}
+
+.content-body{
+    width: 45%;
+    word-break: break-all;
+    text-align: start;
+    margin-right: auto;
+}
+
+.labels-item{
+    flex-wrap: wrap;
+}
+
+.labels-body{
+    background-color:rgba(73, 189, 189, 0.542);
+    color: rgb(67, 67, 67);
+    font-size: 13px;
+    font-weight: bold;
+    padding:  0.2rem;
+    border-radius: 0.2rem;
+}
+
+
+.priority-content{
+    padding:0.1rem 0.2rem;
+    background-color: black;
+    font-weight: bold;
+    border-radius: 0.2rem;
+    color: white;
+}
+
+.date-body{
+    color: gray;
+}
+
+.footer-icon{
+    font-size: 17px;
+    margin-left: 1rem;
+    color: rgb(70, 70, 70);
+}
+
+

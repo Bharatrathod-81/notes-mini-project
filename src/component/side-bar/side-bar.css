@@ -1,0 +1,22 @@
+
+
+.side-bar-container{
+    position: sticky;
+    top: 11%;
+    width: 15%;
+    height: 25vh;
+}
+
+.side-icon{
+    color: var(--primary-color);
+    font-size: x-large;
+}
+
+.bar-elements{
+    font-weight: bolder;
+}
+
+.bar-elements:hover{
+    text-decoration:underline  2px solid var(--primary-color);
+}
+
