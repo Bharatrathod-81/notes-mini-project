@@ -1,11 +1,16 @@
 import "./single-note.css";
 import { useInputContext } from "../../contexts/input-contexts";
+import { useEditContext } from "../../contexts/editContext";
 
-const SingleNote = ({ data }) => {
+const SingleNote = ({ data ,create}) => {
 
     const { dataOfNodes, dispatchNoteData } = useInputContext();
 
+    const { editData, dispatchEditData } = useEditContext();
+
     const { obj } = data;
+
+    const { setCreateBtn } = create;
 
     return (
         <div className="note-body margin-Xsmall" style={{ backgroundColor: obj.color }}>
@@ -38,7 +43,14 @@ const SingleNote = ({ data }) => {
                 Created on {obj.date}
             </div>
             <div className="footer-btn  margin-small  jstfy-end">
-                <button><i class="fa fa-edit footer-icon"></i></button>
+                <button
+                    onClick={() => {
+                        dispatchNoteData({ type: "DELETE_NOTE", payload: obj })
+                        setCreateBtn(true)
+                        dispatchEditData({ type: "EDIT_CARD", payload: obj })
+                    }
+                    }
+                ><i class="fa fa-edit footer-icon"></i></button>
                 <button><i class="fa fa-archive footer-icon"></i></button>
                 <button><i class="fa fa-trash-o footer-icon"></i></button>
             </div>
