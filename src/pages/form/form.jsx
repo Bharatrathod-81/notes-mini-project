@@ -5,7 +5,7 @@ import { useEditContext } from "../../contexts/editContext";
 
 const Form = ({ closeForm }) => {
 
-    const { editData, dispatchEditData} = useEditContext(); 
+    const { editData, dispatchEditData } = useEditContext();
 
     const { setCreateBtn } = closeForm;
 
@@ -18,8 +18,8 @@ const Form = ({ closeForm }) => {
             pined: 0,
             priority: "",
             color: "",
-            titleText:[],
-            contentText:[],
+            titleText: [],
+            contentText: [],
             trash: false,
             archive: false
         });
@@ -29,7 +29,7 @@ const Form = ({ closeForm }) => {
 
     const [colorBtn, setColorBtn] = useState(false);
 
-    const [oldData, setOldData] = useState({title:editData.title,content:editData.content});
+    const [oldData, setOldData] = useState({ title: editData.title, content: editData.content });
 
     const { dataOfNodes, dispatchNoteData } = useInputContext();
 
@@ -41,22 +41,22 @@ const Form = ({ closeForm }) => {
 
     // text Editer for the title
     const textEditerForTitle = (style) => {
-        if (!newNotesValue.titleText.includes(style)){
-            setNewNotesValue({ ...newNotesValue, titleText:[...newNotesValue.titleText,style]});
-        }else{
+        if (!newNotesValue.titleText.includes(style)) {
+            setNewNotesValue({ ...newNotesValue, titleText: [...newNotesValue.titleText, style] });
+        } else {
             const newTitleText = newNotesValue.titleText.filter(item => item !== style);
-            setNewNotesValue({ ...newNotesValue, titleText:[...newTitleText]});
-        };   
+            setNewNotesValue({ ...newNotesValue, titleText: [...newTitleText] });
+        };
     };
 
     // text Editer for the content
     const textEditerForContent = (style) => {
-        if (!newNotesValue.contentText.includes(style)){
-            setNewNotesValue({ ...newNotesValue, contentText:[...newNotesValue.contentText,style]});
-        }else{
+        if (!newNotesValue.contentText.includes(style)) {
+            setNewNotesValue({ ...newNotesValue, contentText: [...newNotesValue.contentText, style] });
+        } else {
             const newContentText = newNotesValue.contentText.filter(item => item !== style);
-            setNewNotesValue({ ...newNotesValue, contentText:[...newContentText]});
-        }; 
+            setNewNotesValue({ ...newNotesValue, contentText: [...newContentText] });
+        };
     };
 
 
@@ -81,9 +81,9 @@ const Form = ({ closeForm }) => {
 
 
     const saveFunc = () => {
-            dispatchNoteData({ type: "NEW_NOTES", payload: { ...newNotesValue, priority: Priority } });
-            setCreateBtn(false);
-  
+        dispatchNoteData({ type: "NEW_NOTES", payload: { ...newNotesValue, priority: Priority } });
+        setCreateBtn(false);
+
     }
 
 
@@ -127,7 +127,7 @@ const Form = ({ closeForm }) => {
                         >B</button>
                         <button className="edit-Btn italic"
                             onClick={() => textEditerForTitle("italic")}
-                            >I</button>
+                        >I</button>
                         <button className="edit-Btn underline"
                             onClick={() => textEditerForTitle("underline")}
                         >U</button>
@@ -143,7 +143,8 @@ const Form = ({ closeForm }) => {
                     placeholder="Title..."
                     onChange={e => {
                         setOldData(e.target.value)
-                        titleFunc(e.target.value)}}
+                        titleFunc(e.target.value)
+                    }}
                 />
             </div>
             <div className="content-input-container flex-column  margin-small">
@@ -151,16 +152,16 @@ const Form = ({ closeForm }) => {
                     <label htmlFor="content-input">CONTENT</label>
                     <div>
                         <button className="edit-Btn bold"
-                        onClick={() => textEditerForContent("bold")}
+                            onClick={() => textEditerForContent("bold")}
                         >B</button>
                         <button className="edit-Btn italic"
-                        onClick={() => textEditerForContent("italic")}
+                            onClick={() => textEditerForContent("italic")}
                         >I</button>
                         <button className="edit-Btn underline"
-                        onClick={() => textEditerForContent("underline")}
+                            onClick={() => textEditerForContent("underline")}
                         >U</button>
                         <button className="edit-Btn lineThrough"
-                        onClick={() => textEditerForContent("lineThrough")}
+                            onClick={() => textEditerForContent("lineThrough")}
                         >S</button>
                     </div>
                 </div>
@@ -171,7 +172,8 @@ const Form = ({ closeForm }) => {
                     placeholder="Enter note..."
                     onChange={e => {
                         setOldData(e.target.value)
-                        contentFunc(e.target.value)}}
+                        contentFunc(e.target.value)
+                    }}
                 />
             </div>
             <div className="labels-input-container  margin-small ">

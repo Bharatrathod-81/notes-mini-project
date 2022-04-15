@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { InputContectProvider } from "./contexts/input-contexts";
 import { EditContextProvider } from "./contexts/editContext";
+import { FilterContextProvider } from "./contexts/filterContext";
 
 // Call make Server
 makeServer();
@@ -13,11 +14,13 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <EditContextProvider>
-        <InputContectProvider>
-          <App />
-        </InputContectProvider>
-      </EditContextProvider>
+      <FilterContextProvider>
+        <EditContextProvider>
+          <InputContectProvider>
+            <App />
+          </InputContectProvider>
+        </EditContextProvider>
+      </FilterContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
