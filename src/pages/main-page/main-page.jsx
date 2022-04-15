@@ -13,24 +13,25 @@ const MainPage = () => {
 
     const { dispatchEditData } = useEditContext();
 
+    
     const getFilterData = () => {
         const { dataOfNodes, dispatchNoteData } = useInputContext();
         let newDataArray = [...dataOfNodes];
-
+        
         const { filterData: {
             priority,
             date,
             labels
         }, dispatchFilterData } = useFilterContext();
-
+        
         if (priority !== "") {
             newDataArray = newDataArray.filter(item => item.priority === priority)
         }
-        if (labels !== ""){
+        if (labels !== "") {
             newDataArray = newDataArray.filter(item => item.labels.includes(labels))
         }
-        if (date === "Descending"){
-            newDataArray = newDataArray.sort((a,b) => {
+        if (date === "Descending") {
+            newDataArray = newDataArray.sort((a, b) => {
                 let d1 = a.date.split("/")
                 let d2 = b.date.split("/")
                 let temp1, temp2
@@ -38,13 +39,13 @@ const MainPage = () => {
                 temp2 = d2[0]
                 d1[0] = d1[1]
                 d2[0] = d2[1]
-                d1[1] = temp1 
-                d2[1] = temp2 
+                d1[1] = temp1
+                d2[1] = temp2
                 return new Date(d2) - new Date(d1)
-            })  
+            })
         }
-        if (date === "Ascending"){
-            newDataArray = newDataArray.sort((a,b) => {
+        if (date === "Ascending") {
+            newDataArray = newDataArray.sort((a, b) => {
                 let d1 = a.date.split("/")
                 let d2 = b.date.split("/")
                 let temp1, temp2
@@ -52,16 +53,19 @@ const MainPage = () => {
                 temp2 = d2[0]
                 d1[0] = d1[1]
                 d2[0] = d2[1]
-                d1[1] = temp1 
-                d2[1] = temp2 
+                d1[1] = temp1
+                d2[1] = temp2
                 return new Date(d1) - new Date(d2)
-        })
-    }
-
+            })
+        }
+        newDataArray = newDataArray.filter(item => !item.trash);
+        
+        newDataArray = newDataArray.filter(item => !item.archive);
+        
         return newDataArray
     }
-
-
+    
+    
     return (
         <div className="main-page-container flex-row">
             <SideBar />

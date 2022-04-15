@@ -2,7 +2,7 @@ import "./single-note.css";
 import { useInputContext } from "../../contexts/input-contexts";
 import { useEditContext } from "../../contexts/editContext";
 
-const SingleNote = ({ data ,create}) => {
+const SingleNote = ({ data, create }) => {
 
     const { dataOfNodes, dispatchNoteData } = useInputContext();
 
@@ -43,16 +43,43 @@ const SingleNote = ({ data ,create}) => {
                 Created on {obj.date}
             </div>
             <div className="footer-btn  margin-small  jstfy-end">
-                <button
+                {!obj.archive && !obj.trash && <button
                     onClick={() => {
                         dispatchNoteData({ type: "DELETE_NOTE", payload: obj })
                         setCreateBtn(true)
                         dispatchEditData({ type: "EDIT_CARD", payload: obj })
                     }
                     }
-                ><i class="fa fa-edit footer-icon"></i></button>
-                <button><i class="fa fa-archive footer-icon"></i></button>
-                <button><i class="fa fa-trash-o footer-icon"></i></button>
+                ><i class="fa fa-edit footer-icon"></i></button>}
+                {obj.archive ?
+                    <div>
+                        <button
+                            onClick={() => dispatchNoteData({ type: "REMOVE_ARCHIVE", payload: obj })}
+                        ><i class="fa fa-archive footer-icon archive"></i>
+                        </button>
+                    </div>
+                    :
+                    <button
+                        onClick={() => dispatchNoteData({ type: "ADD_ARCHIVE", payload: obj })}
+                    ><i class="fa fa-archive footer-icon"></i>
+                    </button>}
+
+                {obj.trash ?
+                    <div>
+                        <button
+                            onClick={() => dispatchNoteData({ type: "REMOVE_TRASH", payload: obj })}
+                        ><i class="fa fa-trash-o footer-icon trash"></i>
+                        </button>
+                        <button
+                            onClick={() => dispatchNoteData({ type: "DELETE_NOTE", payload: obj })}
+                        >DELETE
+                        </button>
+                    </div>
+                    :
+                    <button
+                        onClick={() => dispatchNoteData({ type: "ADD_TRASH", payload: obj })}
+                    ><i class="fa fa-trash-o footer-icon"></i>
+                    </button>}
             </div>
         </div>
     );
