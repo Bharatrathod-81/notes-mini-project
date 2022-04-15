@@ -20,3 +20,69 @@
     text-decoration:underline  2px solid var(--primary-color);
 }
 
+.filter-Btn{
+    background-color: var(--primary-color);
+    width: 7rem;
+    border-radius: 0.2rem;
+    font-size: larger;
+}
+.fa-sliders{
+    font-size: larger;
+}
+
+.links{
+    text-decoration: none;
+    color: black;
+}
+
+.filter-types{
+    margin-left: 1rem;
+    width: 6.6rem;
+}
+
+.date-filter,
+.priority-filter,
+.tag-filter{
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 0.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.3rem;
+    padding: .2rem;
+    cursor: pointer;
+}
+
+.label-filter{
+    border: 2px solid var(--primary-color);
+    border-radius: 0.2rem;
+}
+
+.date-filter-container{
+    width: 5rem;
+    border-radius: 0.2rem;
+    margin-left: 1rem;
+}
+
+.date-btns{
+    background-color: rgba(17, 178, 183, 0.613);
+    margin-bottom: 0.4rem;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    border-radius: 0.2rem;
+}
+
+.priority-filter-btn{
+    margin-left: 1rem;
+    width: 5rem;
+}
+
+.priority-btns{
+    background-color: rgba(17, 178, 183, 0.613);
+    margin-bottom: 0.4rem;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    border-radius: 0.2rem;
+}
