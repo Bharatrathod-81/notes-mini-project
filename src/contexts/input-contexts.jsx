@@ -22,7 +22,19 @@ const InputContectProvider = ({ children }) => {
                 } else {
                     const removeFromPined = state.map(item => item.title === action.payload.title ? { ...action.payload, pined: 0 } : item);
                     return [...removeFromPined];
-                }
+                };
+            case "ADD_ARCHIVE" :
+                const newArchiveArr = state.map(item => item.title===action.payload.title ? {...item,archive:true}:item);
+                return [...newArchiveArr];
+            case "REMOVE_ARCHIVE" :
+                const removeArchive = state.map(item => item.title===action.payload.title ? {...item,archive:false}:item);
+                return [...removeArchive];
+            case "ADD_TRASH" :
+                const newTrashArr = state.map(item => item.title===action.payload.title ? {...item,trash:true}:item);
+                return [...newTrashArr];
+            case "REMOVE_TRASH" :
+                const removeTrash = state.map(item => item.title===action.payload.title ? {...item,trash:false}:item);
+                return [...removeTrash];
             case "DELETE_NOTE":
                 const removedDataForEdit = state.filter(item => item.title !== action.payload.title);
                 return [...removedDataForEdit];

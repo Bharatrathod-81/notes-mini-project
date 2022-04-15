@@ -15,10 +15,9 @@ const SideBar = () => {
     
     return (
         <div className="side-bar-container margin-small flex-column jstfy-spce-btwn align-start">
-            <Link className="links" to="/"><div className="bar-elements margin-Xsmall"><i class="fa fa-home side-icon"></i> HOME</div></Link>
-            <div className="bar-elements margin-Xsmall"><i class="fa fa-archive side-icon"></i> ARCHIVE</div>
-            <div className="bar-elements margin-Xsmall"><i class="fa fa-trash-o side-icon"></i> TRASH</div>
-            <div className="bar-elements margin-Xsmall"><i class="fa fa-tags side-icon"></i> LABELS</div>
+            <Link className="links" to="/main"><div className="bar-elements margin-Xsmall"><i class="fa fa-home side-icon"></i> HOME</div></Link>
+            <Link className="links" to="/archive"><div className="bar-elements margin-Xsmall"><i class="fa fa-archive side-icon"></i> ARCHIVE</div></Link>
+            <Link className="links" to="/trash"><div className="bar-elements margin-Xsmall"><i class="fa fa-trash-o side-icon"></i> TRASH</div></Link>
             <button
                 onClick={() => {
                     dispatchFilterData({type:"CLEAR",payload:""})
