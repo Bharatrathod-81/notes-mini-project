@@ -25,10 +25,11 @@
 .color-container{
     background-color: rgb(207, 228, 246);
     position: absolute;
-    top: -29%;
-    right: 0%;
-    height: 5.2vh;
-    width: 600%;
+    right: 3%;
+    top: 0%;
+    padding:0px 6px 1px 6px;
+    z-index: 1;
+    width: 50%;
 }
 
 .colors{
@@ -64,21 +65,6 @@
     background-color: rgb(233, 231, 228);
 }
 
-.bold{
-    font-weight: bold;
-}
-
-.italic{
-    font-family: italic;
-}
-
-.underline{
-    text-decoration: underline;
-}
-
-.lineThrough{
-    text-decoration: line-through;
-}
 
 .edit-Btn{
     font-size: large;
@@ -94,9 +80,9 @@
 }
 
 .content-input{
+    width: 95%;
     border:2px solid var(--primary-color);
     border-radius: 0.2rem;
-    height: 10vh;
     background-color: rgb(233, 231, 228);
 }
 

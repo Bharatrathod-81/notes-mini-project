@@ -2,28 +2,24 @@ import "./form.css";
 import { useState } from "react";
 import { useInputContext } from "../../contexts/input-contexts";
 import { useEditContext } from "../../contexts/editContext";
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+
 
 const Form = ({ closeForm }) => {
 
-    const { editData, dispatchEditData } = useEditContext();
+    const { editData } = useEditContext();
 
     const { setCreateBtn } = closeForm;
 
     const [newNotesValue, setNewNotesValue] = useState(
         {
-            title: "",
-            content: "",
             labels: [],
-            date: null,
-            pined: 0,
-            priority: "",
-            color: "",
-            titleText: [],
-            contentText: [],
             trash: false,
             archive: false
         });
 
+    const [color, setColor] = useState("")
 
     const [Priority, setPriority] = useState("");
 
@@ -33,31 +29,24 @@ const Form = ({ closeForm }) => {
 
     const { dataOfNodes, dispatchNoteData } = useInputContext();
 
+    const formats = ["bold", "italic", "underline", "strike", "image", "list", "link", "clean", "video"];
+    const modules = {
+        toolbar: [
+            ["bold", "italic", "underline", "strike"],
+            [],
+            [{ list: "ordered" }, { list: "bullet" }],
+            [],
+            ["image", "video", "link"],
+            ["clean"],
+        ],
+    };
+
     // for the color of the card
     const gotColor = (Clr) => {
+        setColor(Clr)
         setNewNotesValue({ ...newNotesValue, color: Clr })
     };
 
-
-    // text Editer for the title
-    const textEditerForTitle = (style) => {
-        if (!newNotesValue.titleText.includes(style)) {
-            setNewNotesValue({ ...newNotesValue, titleText: [...newNotesValue.titleText, style] });
-        } else {
-            const newTitleText = newNotesValue.titleText.filter(item => item !== style);
-            setNewNotesValue({ ...newNotesValue, titleText: [...newTitleText] });
-        };
-    };
-
-    // text Editer for the content
-    const textEditerForContent = (style) => {
-        if (!newNotesValue.contentText.includes(style)) {
-            setNewNotesValue({ ...newNotesValue, contentText: [...newNotesValue.contentText, style] });
-        } else {
-            const newContentText = newNotesValue.contentText.filter(item => item !== style);
-            setNewNotesValue({ ...newNotesValue, contentText: [...newContentText] });
-        };
-    };
 
 
     // for the labels
@@ -73,107 +62,79 @@ const Form = ({ closeForm }) => {
     };
 
 
-    const titleFunc = value => setNewNotesValue({ ...newNotesValue, title: value });
-
-    const contentFunc = value => setNewNotesValue({ ...newNotesValue, content: value });
-
-
-
-
     const saveFunc = () => {
-        dispatchNoteData({ type: "NEW_NOTES", payload: { ...newNotesValue, priority: Priority } });
+        dispatchNoteData({ type: "NEW_NOTES", payload: { ...editData, ...newNotesValue, priority: Priority, } });
         setCreateBtn(false);
-
     }
 
+    const inputHandler = (e) => {
+        setNewNotesValue({ ...newNotesValue, content: e })
+    }
 
     return (
-        <div className="create-container align-centre flex-column">
+        <div
+            style={{ backgroundColor: color }}
+            className="create-container align-centre flex-column">
             <div className="title-input-container flex-column  margin-small">
                 <div className="flex-row jstfy-spce-btwn">
                     <label htmlFor="title-input">TITLE</label>
+                    {colorBtn && <div className="color-container jstfy-spce-btwn"
+                        onClick={() => {
+                            setColorBtn(false)
+                        }}>
+                        <div onClick={() => {
+                            gotColor("rgb(248, 220, 185)")
+                        }}
+                            className="colors color1"></div>
+                        <div onClick={() => {
+                            gotColor("rgb(185, 248, 189)")
+                        }}
+                            className="colors color2"></div>
+                        <div onClick={() => {
+                            gotColor("rgb(185, 193, 248)")
+                        }}
+                            className="colors color3"></div>
+                        <div onClick={() => {
+                            gotColor("rgb(193, 245, 243)")
+                        }}
+                            className="colors color4"></div>
+                        <div onClick={() => {
+                            gotColor("rgb(248, 185, 188)")
+                        }}
+                            className="colors color5"></div>
+                    </div>}
                     <div className="jstfy-spce-btwn ">
                         <div className="color-btn-container">
                             <button onClick={() => setColorBtn(true)}
                                 className="color-btn"><i class="fa fa-paint-brush footer-icon"></i></button>
-                            {colorBtn && <div className="color-container jstfy-spce-btwn"
-                                onClick={() => {
-                                    setColorBtn(false)
-                                }}>
-                                <div onClick={() => {
-                                    gotColor("rgb(248, 220, 185)")
-                                }}
-                                    className="colors color1"></div>
-                                <div onClick={() => {
-                                    gotColor("rgb(185, 248, 189)")
-                                }}
-                                    className="colors color2"></div>
-                                <div onClick={() => {
-                                    gotColor("rgb(185, 193, 248)")
-                                }}
-                                    className="colors color3"></div>
-                                <div onClick={() => {
-                                    gotColor("rgb(193, 245, 243)")
-                                }}
-                                    className="colors color4"></div>
-                                <div onClick={() => {
-                                    gotColor("rgb(248, 185, 188)")
-                                }}
-                                    className="colors color5"></div>
-                            </div>}
                         </div>
-                        <button className="edit-Btn bold"
-                            onClick={() => textEditerForTitle("bold")}
-                        >B</button>
-                        <button className="edit-Btn italic"
-                            onClick={() => textEditerForTitle("italic")}
-                        >I</button>
-                        <button className="edit-Btn underline"
-                            onClick={() => textEditerForTitle("underline")}
-                        >U</button>
-                        <button className="edit-Btn lineThrough"
-                            onClick={() => textEditerForTitle("lineThrough")}
-                        >S</button>
+
                     </div>
                 </div>
                 <input
-                    className={`title-input padding-small ${newNotesValue.titleText.join(" ")}`}
+                    className="title-input padding-small"
+                    name="title"
                     type="text"
                     value={oldData.title}
                     placeholder="Title..."
                     onChange={e => {
                         setOldData(e.target.value)
-                        titleFunc(e.target.value)
+                        setNewNotesValue({ ...newNotesValue, title: e.target.value });
                     }}
                 />
             </div>
             <div className="content-input-container flex-column  margin-small">
                 <div className=" jstfy-spce-btwn">
                     <label htmlFor="content-input">CONTENT</label>
-                    <div>
-                        <button className="edit-Btn bold"
-                            onClick={() => textEditerForContent("bold")}
-                        >B</button>
-                        <button className="edit-Btn italic"
-                            onClick={() => textEditerForContent("italic")}
-                        >I</button>
-                        <button className="edit-Btn underline"
-                            onClick={() => textEditerForContent("underline")}
-                        >U</button>
-                        <button className="edit-Btn lineThrough"
-                            onClick={() => textEditerForContent("lineThrough")}
-                        >S</button>
-                    </div>
                 </div>
-                <textarea
-                    className={`content-input padding-small ${newNotesValue.contentText.join(" ")}`}
-                    type="text"
-                    value={oldData.content}
-                    placeholder="Enter note..."
-                    onChange={e => {
-                        setOldData(e.target.value)
-                        contentFunc(e.target.value)
-                    }}
+                <ReactQuill
+                    name="content"
+                    modules={modules}
+                    formats={formats}
+                    value={editData.content ?? newNotesValue.content}
+                    placeholder="Take a note..."
+                    onChange={inputHandler}
+                    className="content-input padding-small"
                 />
             </div>
             <div className="labels-input-container  margin-small ">
@@ -185,7 +146,6 @@ const Form = ({ closeForm }) => {
                                 <input
                                     className="labels-input"
                                     type="checkbox"
-                                    checked={newNotesValue.labels.includes(label)}
                                     onClick={() => labelFunc(label)}
                                 />
                                 <label htmlFor="labels-input">{label}</label>
@@ -197,33 +157,17 @@ const Form = ({ closeForm }) => {
             <div className="priority">
                 <div>PRIORITY</div>
                 <div className="priority-inputs">
-                    <span>
-                        <input
-                            type="radio"
-                            className="low"
-                            name="priority"
-                            onClick={() => setPriority("Low")}
-                        />
-                        <label htmlFor="low">LOW</label>
-                    </span>
-                    <span className="margin-small">
-                        <input
-                            type="radio"
-                            className="medium"
-                            name="priority"
-                            onClick={() => setPriority("Medium")}
-                        />
-                        <label htmlFor="medium">MEDIUM</label>
-                    </span>
-                    <span className="margin-small">
-                        <input
-                            type="radio"
-                            className="high"
-                            name="priority"
-                            onClick={() => setPriority("High")}
-                        />
-                        <label htmlFor="high">HIGH</label>
-                    </span>
+                    {['LOW', 'MEDIUM', 'HIGH'].map(e =>
+                        <span>
+                            <input
+                                type="radio"
+                                className="low"
+                                name="priority"
+                                onClick={() => setPriority(e)}
+                            />
+                            <label htmlFor="low">{e}</label>
+                        </span>
+                    )}
                 </div>
             </div>
             <div className="save-close margin-small  jstfy-start">

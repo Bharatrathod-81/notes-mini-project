@@ -13,16 +13,18 @@ const MainPage = () => {
 
     const { dispatchEditData } = useEditContext();
 
-    
+    // const {filterData, dispatchFilterData} = useFilterContext();
+    const { filterData: {
+        priority,
+        date,
+        labels,
+        search
+    }, dispatchFilterData } = useFilterContext();
+
     const getFilterData = () => {
         const { dataOfNodes, dispatchNoteData } = useInputContext();
         let newDataArray = [...dataOfNodes];
         
-        const { filterData: {
-            priority,
-            date,
-            labels
-        }, dispatchFilterData } = useFilterContext();
         
         if (priority !== "") {
             newDataArray = newDataArray.filter(item => item.priority === priority)
@@ -31,40 +33,25 @@ const MainPage = () => {
             newDataArray = newDataArray.filter(item => item.labels.includes(labels))
         }
         if (date === "Descending") {
-            newDataArray = newDataArray.sort((a, b) => {
-                let d1 = a.date.split("/")
-                let d2 = b.date.split("/")
-                let temp1, temp2
-                temp1 = d1[0]
-                temp2 = d2[0]
-                d1[0] = d1[1]
-                d2[0] = d2[1]
-                d1[1] = temp1
-                d2[1] = temp2
-                return new Date(d2) - new Date(d1)
-            })
+            newDataArray = newDataArray.sort((a, b) => b.date-a.date)
         }
         if (date === "Ascending") {
-            newDataArray = newDataArray.sort((a, b) => {
-                let d1 = a.date.split("/")
-                let d2 = b.date.split("/")
-                let temp1, temp2
-                temp1 = d1[0]
-                temp2 = d2[0]
-                d1[0] = d1[1]
-                d2[0] = d2[1]
-                d1[1] = temp1
-                d2[1] = temp2
-                return new Date(d1) - new Date(d2)
-            })
+            newDataArray = newDataArray.sort((a, b) => a.date-b.date)
+        }
+        if(search !== ""){
+            newDataArray = newDataArray.filter(e => e.title.includes(search));
         }
         newDataArray = newDataArray.filter(item => !item.trash);
         
         newDataArray = newDataArray.filter(item => !item.archive);
+
         
         return newDataArray
     }
     
+    const inputHandler = (e) => {
+        
+    }
     
     return (
         <div className="main-page-container flex-row">
@@ -74,11 +61,11 @@ const MainPage = () => {
                     <input
                         className="search-input margin-small padding-small"
                         type="text"
+                        onChange={e => dispatchFilterData({type:"SEARCH",payload:e.target.value})}
                         placeholder="Search by Title" />
                     <button
                         className="create-btn padding-small"
                         onClick={() => {
-                            dispatchEditData({ type: "NEW_NOTES", payload: {} })
                             setCreateBtn(true)
                         }}
                     >Create New</button>
