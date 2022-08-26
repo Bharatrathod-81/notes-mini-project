@@ -5,13 +5,16 @@ const inputContext = createContext();
 const InputContectProvider = ({ children }) => {
 
     // for the current date
-    const today = new Date();
-    const currentDate = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    const currentDate = Date.now();
 
 
     const Reducer = (state, action) => {
         switch (action.type) {
             case "NEW_NOTES":
+                if(state.some(e => e.date === action.payload.date)){
+                    const newArr = state.map(e => e.date===action.payload.date ? action.payload:e);
+                    return newArr;
+                }
                 const newObj = { ...action.payload, date: currentDate }
                 return [...state, newObj];
             case "PINED":

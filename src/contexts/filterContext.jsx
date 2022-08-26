@@ -12,11 +12,15 @@ const FilterContextProvider = ({ children }) => {
                 return{...state,date:action.payload};
             case "LABELS" :
                 return{...state,labels:action.payload};
+            case 'SEARCH':
+                console.log(action);
+                return{...state,search:action.payload};
             case "CLEAR" :
                 return{
                     priority:"",
                     date:"",
-                    labels:""
+                    labels:"",
+                    search:""
                 }
             default:
                 return state;
@@ -27,7 +31,8 @@ const FilterContextProvider = ({ children }) => {
     const [filterData, dispatchFilterData] = useReducer(getFilterData,{
         priority:"",
         date:"",
-        labels:""
+        labels:"",
+        search:""
     });
 
     return(
